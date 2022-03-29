@@ -10,12 +10,16 @@ class MobileBankApiTestV1 {
       // Given - When - Then
       // Предусловия
       given()
-          .baseUri("http://localhost:9999/api/v1")
-      // Выполняемые действия
-      .when()
-          .get("/demo/accounts")
-      // Проверки
-      .then()
-          .statusCode(200);
+                .baseUri("http://localhost:9999/api/v1")
+                // Выполняемые действия
+                .when()
+                .get("/demo/accounts")
+                // Проверки
+                .then()
+                .log()
+                .all()
+                .statusCode(200)
+                // static import для JsonSchemaValidator.matchesJsonSchemaInClasspath
+                .body(matchesJsonSchemaInClasspath("accounts.schema.json"));
     }
 }
